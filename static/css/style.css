@@ -1,0 +1,49 @@
+/* static/css/style.css */
+
+:root {
+    --medical-blue: #007bff;
+    --medical-light: #e3f2fd;
+    --success-green: #28a745;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    background-color: var(--medical-blue) !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background-color: var(--medical-blue);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Style pour les petits badges de statistiques */
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--medical-blue);
+}
