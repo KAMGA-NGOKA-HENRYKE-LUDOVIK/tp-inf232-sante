@@ -82,3 +82,11 @@ def collecte():
     
     # Une fois enregistré, on redirige vers l'index ou une page de succès
     return redirect(url_for('index'))
+
+import os
+
+if __name__ == '__main__':
+    # Cette ligne permet à Railway de choisir le port (ex: 8080, 5000)
+    port = int(os.environ.get("PORT", 5000))
+    # On écoute sur 0.0.0.0 pour être accessible sur internet
+    app.run(host='0.0.0.0', port=port)
