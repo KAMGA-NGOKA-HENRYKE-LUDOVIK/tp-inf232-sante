@@ -24,7 +24,7 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return "Serveur de Collecte de Santé Opérationnel"
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
@@ -67,21 +67,26 @@ def index():
 
 @app.route('/collecte', methods=['POST'])
 def collecte():
-    # Récupération des données du formulaire
+    # 1. Récupération des données du formulaire
+    age = request.form.get('age')
+    genre = request.form.get('genre')
+    symptome = request.form.get('symptome')
+    temperature = request.form.get('temperature')
+    ville = request.form.get('ville')
+
+    # 2. Enregistrement dans la base de données
     nouvelle_consultation = Consultation(
-        age=int(request.form.get('age')),
-        genre=request.form.get('genre'),
-        symptome=request.form.get('symptome'),
-        temperature=float(request.form.get('temperature')),
-        ville=request.form.get('ville')
+        age=age, 
+        genre=genre, 
+        symptome=symptome, 
+        temperature=float(temperature), 
+        ville=ville
     )
-    
-    # Enregistrement dans la base de données
     db.session.add(nouvelle_consultation)
     db.session.commit()
-    
-    # Une fois enregistré, on redirige vers l'index ou une page de succès
-    return redirect(url_for('index'))
+
+    # 3. Redirection vers la page d'analyse après l'envoi
+    return redirect(url_for('analyse'))
 
 import os
 
