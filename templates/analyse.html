@@ -49,32 +49,6 @@
     </div>
 </div>
 
-<script>
-    // Récupération des données depuis notre API Python
-    fetch('/api/analyse')
-        .then(response => response.json())
-        .then(data => {
-            if(data.message) return alert("Aucune donnée disponible");
-
-            // Remplir les cartes
-            document.getElementById('total-count').innerText = data.total_consultations;
-            document.getElementById('avg-temp').innerText = data.temperature_moyenne + "°C";
-            document.getElementById('common-symptom').innerText = data.symptome_dominant;
-
-            // Exemple de graphique par Genre (Données simulées pour la structure)
-            const ctx = document.getElementById('genreChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Masculin', 'Féminin', 'Autre'],
-                    datasets: [{
-                        label: 'Répartition par Genre',
-                        data: [data.repartition_genre.Masculin, data.repartition_genre.Féminin, data.repartition_genre.Autre],
-                        backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56']
-                    }]
-                }
-            });
-        });
-</script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 </body>
 </html>
